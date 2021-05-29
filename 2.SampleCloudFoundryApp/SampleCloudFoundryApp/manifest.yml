@@ -1,0 +1,18 @@
+---
+applications:
+  - name: bootcamp-customers
+    memory: 512M
+    buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    instances: 1
+    random-route: true
+    path: target/SampleCloudFoundryApp-0.0.1-SNAPSHOT.jar
+    services:
+      - bootcamp-customers-mysql
+    env:
+      #JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: {stack_threads: 30} }'
+      DEBUG: "true"
+      SPRING_PROFILES_ACTIVE: cloud
+
+
+

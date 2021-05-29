@@ -1,0 +1,12 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          #uri: file://${user.home}/CloudNativeJava/3.Configuration/config-repo
+          uri: https://github.com/PankajSAgarwal/config-repo
+          search-paths: '{application}'

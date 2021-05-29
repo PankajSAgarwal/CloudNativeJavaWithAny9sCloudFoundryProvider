@@ -1,0 +1,16 @@
+---
+applications:
+  - name: downstream-service
+    memory: 356M
+    path: target/downstream-service-0.0.1-SNAPSHOT.jar
+    random-route: true
+    buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    env:
+      JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+      JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: {stack_threads: 30} }'
+      DEBUG: "true"
+      SPRING_PROFILES_ACTIVE: cloud
+    services:
+      - routing-eureka-service
+      - route-service

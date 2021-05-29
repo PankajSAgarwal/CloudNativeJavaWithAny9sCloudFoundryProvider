@@ -1,0 +1,8 @@
+server:
+  port: 8080
+greeting: "Hello local"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh
