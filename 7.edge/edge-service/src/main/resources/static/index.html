@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Edge Service</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <script type="text/javascript"
+            src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="/webjars/angularjs/angular.min.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="home as home">
+
+<div class="container" ng-show="!home.authenticated">
+    <a href="/login">Login </a>
+</div>
+
+<div class="container" ng-show="home.authenticated">
+
+    <!--1-->
+    Logged in as:
+    <b><span ng-bind="home.user"></span></b> <br/>
+
+    Token:
+    <b><span ng-bind="home.token"></span> </b><br/>
+
+    Greeting from Zuul Route: <b>
+    <span ng-bind="home.greetingFromZuulRoute"></span></b> <br/>
+
+    Greeting from Edge Service (Feign):
+    <b><span ng-bind="home.greetingFromEdgeService"></span></b><br/>
+</div>
+
+<!--2-->
+<script type="text/javascript" src="app.js"></script>
+</body>

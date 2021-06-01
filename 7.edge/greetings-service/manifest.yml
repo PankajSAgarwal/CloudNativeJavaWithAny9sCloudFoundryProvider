@@ -1,0 +1,16 @@
+---
+applications:
+  - name: greetings-service
+    memory: 256M
+    host: greetings-service-${random-word}
+    timeout: 80
+    buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    path: target/greetings-service-0.0.1-SNAPSHOT.jar
+    services:
+      - service-registry
+    env:
+      JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: {stack_threads: 30} }'
+      DEBUG: "true"
+      SPRING_PROFILES_ACTIVE: cloud
+    #    ,secure

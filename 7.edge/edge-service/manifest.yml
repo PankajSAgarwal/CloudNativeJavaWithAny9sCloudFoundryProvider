@@ -1,0 +1,16 @@
+---
+applications:
+  - name: edge-service
+    memory: 256M
+    host: edge-service-${random-word}
+    timeout: 180
+    buildpack: https://github.com/cloudfoundry/java-buildpack.git
+    path: target/edge-service-0.0.1-SNAPSHOT.jar
+    services:
+      - service-registry
+    env:
+      JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: {stack_threads: 30} }'
+      DEBUG: "true"
+      SPRING_PROFILES_ACTIVE: cloud
+    #    cloud,secure,sso,feign
