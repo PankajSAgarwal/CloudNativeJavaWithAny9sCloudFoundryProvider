@@ -1,0 +1,14 @@
+---
+applications:
+  - name: redis-caching
+    memory: 512M
+    instances: 1
+    host: redis-caching-${random-word}
+    path: target/redis-0.0.1-SNAPSHOT.jar
+    env:
+      JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: {stack_threads: 30} }'
+      SPRING_PROFILES_ACTIVE: cloud
+      DEBUG: "true"
+    services:
+      - CNJ-Redis
